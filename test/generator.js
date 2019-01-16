@@ -36,9 +36,9 @@ const ES5_STRICT_CLOSURE_OPTIONS = {
   },
 };
 const defaultClosureFlags = {
-  ...DEFAULT_CLOSURE_OPTIONS,
+  // ...DEFAULT_CLOSURE_OPTIONS,
   ...ADVANCED_CLOSURE_OPTIONS,
-  ...ES5_STRICT_CLOSURE_OPTIONS,
+  // ...ES5_STRICT_CLOSURE_OPTIONS,
 };
 
 const ES_OUTPUT = 'es';
@@ -53,7 +53,7 @@ const fixtureLocation = (category, name, format, optionsKey, minified = false) =
       : `${name}.js`
   }`;
 
-function generate(shouldFail, category, name, codeSplit, formats, closureFlags) {
+function generate(shouldFail, category, name, formats, closureFlags) {
   const targetLength = longest(formats);
   const optionLength = longest(Object.keys(closureFlags));
 
@@ -62,7 +62,6 @@ function generate(shouldFail, category, name, codeSplit, formats, closureFlags) 
       input: fixtureLocation(category, name, format, optionKey, false),
       plugins: [compiler(closureFlags[optionKey])],
       external: ['lodash'],
-      experimentalCodeSplitting: codeSplit,
       onwarn: _ => null,
     });
 
@@ -126,21 +125,19 @@ function generate(shouldFail, category, name, codeSplit, formats, closureFlags) 
 function failureGenerator(
   category,
   name,
-  codeSplit = false,
   formats = [ESM_OUTPUT],
   closureFlags = defaultClosureFlags,
 ) {
-  generate(true, category, name, codeSplit, formats, closureFlags);
+  generate(true, category, name, formats, closureFlags);
 }
 
 function generator(
   category,
   name,
-  codeSplit = false,
   formats = [ESM_OUTPUT],
   closureFlags = defaultClosureFlags,
 ) {
-  generate(false, category, name, codeSplit, formats, closureFlags);
+  generate(false, category, name, formats, closureFlags);
 }
 
 module.exports = {

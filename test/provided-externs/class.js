@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import {generator, ESM_OUTPUT} from '../generator';
+import {generator} from '../generator';
 const path = require('path');
 
 const EXTERNS = path.resolve('test', 'provided-externs', 'fixtures', 'class.externs.js');
 
-generator('provided-externs', 'class', false, [ESM_OUTPUT], {
+generator('provided-externs', 'class', undefined, {
   default: {
     externs: EXTERNS,
   },

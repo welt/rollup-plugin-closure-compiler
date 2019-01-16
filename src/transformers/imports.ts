@@ -56,11 +56,18 @@ export default class ImportTransform extends Transform {
 
     if (this.dynamicImportPresent) {
       extern += `
+/** @typedef {Object<string, ?>} */
+var ResolvedObject;
+
 /**
  * @param {string} path
- * @return {!Promise<?>}
+ * @return {!Promise<ResolvedObject>}
  */
-function ${DYNAMIC_IMPORT_REPLACEMENT}(path) { return Promise.resolve(path) };
+function ${DYNAMIC_IMPORT_REPLACEMENT}(path) { 
+  return Promise.resolve({
+    'handleImport': function handleImport(){},
+  });
+};
 window['${DYNAMIC_IMPORT_REPLACEMENT}'] = ${DYNAMIC_IMPORT_REPLACEMENT};`;
     }
 

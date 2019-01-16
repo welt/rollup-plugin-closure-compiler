@@ -1,1 +1,1 @@
-var exported=function(){import("./dynamic-imported.js").then(function(a){return a.handleImport()})};export{exported};
+var exported=function(){import("./chunk-5ff93b35.js").then(function(a){return a.handleImport()})};export{exported};

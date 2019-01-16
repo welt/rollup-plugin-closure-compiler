@@ -52,7 +52,7 @@ export default {
 
 ### Code Splitting via Dynamic Imports
 
-This plugin supports code splitting with Rollup's `experimentalCodeSplitting` feature. Enable code splitting in your Rollup configuration and each output bundle will be minified by Closure Compiler.
+This plugin supports code splitting. Enable code splitting in your Rollup configuration and each output bundle will be minified by Closure Compiler.
 
 ```js
 // rollup.config.js
@@ -64,7 +64,6 @@ export default {
     dir: 'public/module',
     format: 'es',
   },
-  experimentalCodeSplitting: true,
   plugins: [
     compiler(),
   ],
